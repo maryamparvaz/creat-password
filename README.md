@@ -1,5 +1,5 @@
 # creat-password
-- [Demo Project](https://maryamparvaz.github.io/card-number/)
+- [Demo Project](https://maryamparvaz.github.io/creat-password/)
 
 - Developed by Maryam Parvaz 
 
