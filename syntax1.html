@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" href="font/node_modules/bootstrap-icons/font/bootstrap-icons.min.css">
+        <style>
+                * {
+                        padding: 0;
+                        margin: 0;
+                        box-sizing: border-box;
+                }
+
+                body {
+                        width: 100%;
+                        height: 100vh;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        background: #000000;
+                        font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+                        display: flex;
+                        flex-wrap: wrap;
+
+
+                }
+
+                body>section {
+                        width: 100%;
+                        display: flex;
+                        justify-content: center;
+                        padding-bottom: 50px;
+
+                        >button {
+                                width: 150px;
+                                height: 70px;
+                                font-size: 20px;
+                                padding: 10px;
+                        }
+                }
+
+                body>form {
+                        width: 300px;
+                        height: 300px;
+                        background: #74ebd5;
+                        background: -webkit-linear-gradient(to right, #ACB6E5, #74ebd5);
+                        background: linear-gradient(to right, #ACB6E5, #74ebd5);
+                        display: flex;
+                        flex-wrap: wrap;
+                        align-items: center;
+                        justify-content: center;
+                        padding: 60px 5px;
+
+                        >input {
+                                width: 260px;
+                                height: 40px;
+                                font-size: 18px;
+                                padding: 5px;
+                                border: none;
+                        }
+
+                        >div {
+                                width: 30px;
+                                height: 30px;
+                                position: relative;
+
+                                >i {
+                                        position: absolute;
+                                        font-size: 30px;
+                                        cursor: pointer;
+
+                                        &:nth-of-type(2) {
+                                                display: none;
+                                        }
+                                }
+                        }
+
+                        h1 {
+                                width: 100%;
+                                display: flex;
+                                justify-content: center;
+                        }
+
+                        >button {
+                                width: 100px;
+                                height: 40px;
+                                font-size: 20px;
+                        }
+
+                }
+        </style>
+</head>
+
+<body>
+        <form action="reg.php" onsubmit="para(event)">
+                <input id="check" type="password" placeholder="write your password..." onkeyup="check1()">
+                <div id="st" data-status="off">
+                        <i id="closee" class="bi bi-eye-slash-fill"></i>
+                        <i id="opp" class="bi bi-eye-fill"></i>
+                </div>
+                <h1 id="er"></h1>
+                <button>send</button>
+        </form>
+        <section>
+                <button id="clc">
+                        create password
+                </button>
+        </section>
+</body>
+<script>
+        let txt = ['weak', 'medium', 'strong', 'very strong']
+        let ch = document.getElementById('check')
+        let clos = document.getElementById('closee')
+        let op = document.getElementById('opp')
+        let h = document.getElementById('er')
+        let clc = document.getElementById('clc')
+        let val = ''
+        let i = ''
+        let status = document.getElementById('st')
+        let flag = 1
+        st.addEventListener('click', () => {
+                if (flag % 2) {
+                        op.style.display = 'flex'
+                        clos.style.display = 'none'
+                        ch.setAttribute('type', 'text')
+                        flag++
+                } else {
+                        clos.style.display = 'flex'
+                        op.style.display = 'none'
+                        ch.setAttribute('type', 'password')
+                        flag++
+                }
+        })
+
+        function check1() {
+                val = ch.value
+                if (val.length <= 8) {
+                        h.innerHTML = `weak`
+                } else {
+                        h.innerHTML = 'medium'
+                        i = 0
+                        if (
+                                val.search(/[1-9]/) >= 0
+                        ) {
+                                i++
+                        } if (
+                                val.search(/[#$&*@]/) >= 0
+                        ) {
+                                i++
+                        } if (
+                                val.search(/[.,-_]/)
+                        ) {
+                                i++
+                        }
+
+
+                }
+                switch (i) {
+                        case 1: h.innerHTML = 'medium'; break;
+                        case 2: h.innerHTML = 'strong'; break;
+                        case 3: h.innerHTML = 'very strong'; break;
+                }
+        }
+        function para(e) {
+                if (
+                        h.innerHTML != 'very strong'
+                ) {
+                        e.preventDefault()
+                        alert('your password is not good')
+                }
+        }
+        clc.addEventListener('click', () => {
+                let t = ''
+                let arr1 = ['@', '#', '$', '&', '*']
+                let arr2 = ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'z', 'x', 'c', 'v', 'b']
+                let arr3 = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
+                let d = [
+                        arr1[Math.floor(Math.random() * arr1.length)],
+                        arr2[Math.floor(Math.random() * arr2.length)],
+                        arr3[Math.floor(Math.random() * arr3.length)],
+                        arr1[Math.floor(Math.random() * arr1.length)],
+                        arr3[Math.floor(Math.random() * arr3.length)],
+                        arr3[Math.floor(Math.random() * arr3.length)],
+                        arr1[Math.floor(Math.random() * arr1.length)],
+                        arr2[Math.floor(Math.random() * arr2.length)],
+                        arr2[Math.floor(Math.random() * arr2.length)]
+                ]
+                d.forEach(element => {
+                        t = t + element
+                });
+                ch.value = t
+                check1()
+
+        })
+</script>
+
+</html>
