@@ -1,7 +1,7 @@
 # creat-password
 - [Demo Project](https://maryamparvaz.github.io/creat-password/)
 
-- Developed by Maryam Parvaz 
+- Developed by Maryam Parvaz .
 
 - Created - 2023-9-9.
 
